@@ -24,7 +24,7 @@ const Header = ({ title }) => {
 };
 
 Header.defaultProps = {
-  title: "BIA 2026 pipeline",
+  title: "BIA 2026 pipeline com buildspec",
 };
 
 export default Header;
