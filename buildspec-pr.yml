@@ -9,8 +9,6 @@ phases:
   build:
     commands:
       - npm install --loglevel=error
-      - cp client/package*.json ./client/
-      - cd client && npm install --legacy-peer-deps --loglevel=error
       - cd client && VITE_API_URL=https://cdn-bia.humangovmlc.click npm run build
       - echo Rodando testes unitários
       - npm test
