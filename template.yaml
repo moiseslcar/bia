@@ -68,10 +68,10 @@ Resources:
           DB_PORT: 5432
       VpcConfig:
         SecurityGroupIds:
-          - SEU_SG
+          - sg-08f5988f3a70f611f
         SubnetIds:
-          - SUA_SUBNET_1
-          - SUA_SUBNET_2
+          - subnet-00021095aec363282
+          - subnet-022ca8fd795c40c6b
     
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
