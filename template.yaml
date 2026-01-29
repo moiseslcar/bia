@@ -6,15 +6,44 @@ Description: >
   Projeto da bia com sam da Formacao AWS
   
 # More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Parameters:
+  SecurityGroup:
+    Type: String
+    Description: Security Group ID
+  DBName:
+    Type: String
+    Description: DataBase Name
+  DBUser:
+    Type: String
+    Description: DataBase User
+  DBPassword:
+    Type: String
+    Description: DataBase Password
+  DBHost:
+    Type: String
+    Description: DataBase Host  
 Globals:
   Function:
     Timeout: 3   
-    MemorySize: 512 
+    MemorySize: 512
+    VpcConfig:
+      SecurityGroupIds:
+      - !Ref SecurityGroup
+      SubnetIds:
+      - subnet-00021095aec363282
+      - subnet-022ca8fd795c40c6b
+    Environment:
+      Variables:
+        DB_USER: !Ref DBUser
+        DB_NAME: !Ref DBName
+        DB_PWD: !Ref DBPassword
+        DB_HOST: !Ref DBHost
+        DB_PORT: 5432
   Api:
     Cors:
       AllowMethods: "'GET, PUT, POST, DELETE, OPTIONS'"
       AllowOrigin: "'*'"
-      AllowHeaders: "'Content-type, x-api-key'"     
+      AllowHeaders: "'Content-type, x-api-key'"
 Resources:  
   TarefasFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
@@ -60,19 +89,6 @@ Resources:
           Properties:
             Path: /api/tarefas/{uuid}
             Method: delete
-      Environment:
-        Variables:
-          DB_USER: postgres
-          DB_PWD: postgres
-          DB_HOST: database
-          DB_PORT: 5432
-      VpcConfig:
-        SecurityGroupIds:
-          - sg-08f5988f3a70f611f
-        SubnetIds:
-          - subnet-00021095aec363282
-          - subnet-022ca8fd795c40c6b
-    
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
   # Find out more about other implicit resources you can reference within SAM
