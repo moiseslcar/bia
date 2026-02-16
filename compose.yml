@@ -7,10 +7,10 @@ services:
     depends_on:
       - database
     environment:
-      DB_USER: postgres
-      DB_PWD: vjd![ViomV|v]Ds8ncV(V*3NQ9[W
-      DB_HOST: bia.c4t2uos0wbfs.us-east-1.rds.amazonaws.com
-      DB_PORT: 5432
+      DB_USER: ${DB_USER}
+      DB_PWD: ${DB_PWD}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
       ## NAO PRECISA NO BOOTCAMP DAQUI PRA BAIXO ##
       # DB_SECRET_NAME: 
       # DB_REGION: 
